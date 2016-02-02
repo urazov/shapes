@@ -21,11 +21,6 @@ class App
      */
     private $response;
 
-    /**
-     * @var BaseShape
-     */
-    private $shape;
-
     private function __construct(){}
 
     /**
@@ -51,11 +46,11 @@ class App
 
     public function validate()
     {
-        if(!count($this->input_params) || !array_key_exists('type', $this->input_params)){
+        if(!count($this->input_params)){
             throw new Exception('input params are wrong');
         }
 
-        if(is_null($this->response) || !($this->response instanceof iEditorResponse)){
+        if(!($this->response instanceof iEditorResponse)){
             throw new Exception('response object is wrong');
         }
     }
@@ -67,9 +62,11 @@ class App
 
     public function run()
     {
-        $this->shape = ShapeFactory::getShape($this->input_params);
-        $this->shape->setParams($this->input_params);
+        foreach($this->input_params as $params){
+            $shape = ShapeFactory::getShape($params);
+            $shape->setParams($params);
 
-        $this->response->handleShape($this->shape);
+            $this->response->handleShape($shape);
+        }
     }
 }

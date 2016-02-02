@@ -8,7 +8,15 @@ use Editor\Responses\JsonResponse;
 try{
     $app = App::getInstance();
 
-    $app->registerRequest(array_merge($_GET, $_POST));
+    /**
+     * Example
+     */
+    $input_request = [
+        ['type' => 'circle', 'params' => ['color' => 'red', 'line' => 3]],
+        ['type' => 'circle', 'params' => ['color' => 'green', 'line' => 2]]
+    ];
+
+    $app->registerRequest($input_request);
 
     $app->registerResponse(new JsonResponse());
 
@@ -24,5 +32,8 @@ try{
         'line' => $e->getLine()
     ];
 
+    /**
+     * Example
+     */
     var_dump($result);
 }

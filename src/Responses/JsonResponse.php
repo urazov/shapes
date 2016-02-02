@@ -22,7 +22,10 @@ class JsonResponse implements iEditorResponse
         /**
          * Example
          */
-        $this->result['color'] = $shape->getColor();
-        $this->result['line'] = $shape->getWidthLine();
+        $result['type'] = $shape->getTypeName();
+        $result['color'] = $shape->getColor();
+        $result['line'] = $shape->getWidthLine();
+
+        $this->result[] = $result;
     }
 }

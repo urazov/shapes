@@ -15,7 +15,7 @@ class ShapeFactory
     {
         switch($params['type']){
             case 'circle' : return new Circle();
-            case 'rectangle' : return new Square();
+            case 'square' : return new Square();
             default : throw new Exception('input type is wrong');
         }
     }

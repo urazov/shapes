@@ -8,6 +8,14 @@ abstract class BaseShape
     protected $width_line;
     protected $params;
 
+    /**
+     * @return string
+     */
+    public function getTypeName()
+    {
+        return static::TYPE_NAME;
+    }
+
     public function setParams($input_params)
     {
         $this->params = $input_params;
