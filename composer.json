@@ -1,0 +1,13 @@
+{
+    "name": "Shape editor",
+    "description": "Homework project",
+    "type": "project",
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Editor\\": "src/"
+        }
+    }
+}
