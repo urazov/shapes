@@ -2,7 +2,6 @@
 
 namespace Editor\Core;
 
-use Editor\Responses\EditorJsonResponse;
 use Editor\Responses\iEditorResponse;
 use Editor\Shapes\BaseShape;
 use Editor\Shapes\ShapeFactory;
@@ -45,15 +44,15 @@ class App
         $this->input_params = $params;
     }
 
-    public function registerResponse(iEditorResponse $response = null)
+    public function registerResponse(iEditorResponse $response)
     {
-        $this->response = is_null($response) ? new EditorJsonResponse() : $response;
+        $this->response = $response;
     }
 
     public function validate()
     {
-        if(!count($this->input_params)){
-            throw new Exception('input params are missed');
+        if(!count($this->input_params) || !array_key_exists('type', $this->input_params)){
+            throw new Exception('input params are wrong');
         }
 
         if(is_null($this->response) || !($this->response instanceof iEditorResponse)){
@@ -68,8 +67,9 @@ class App
 
     public function run()
     {
-        $shape = ShapeFactory::getShape($this->input_params);
-        $shape->setParams($this->input_params);
-        $shape->
+        $this->shape = ShapeFactory::getShape($this->input_params);
+        $this->shape->setParams($this->input_params);
+
+        $this->response->handleShape($this->shape);
     }
 }

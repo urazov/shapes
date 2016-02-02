@@ -23,12 +23,12 @@ abstract class BaseShape
         $this->width_line = $width_line;
     }
 
-    protected function getColor()
+    public function getColor()
     {
         return $this->color;
     }
 
-    protected function getWidthLine()
+    public function getWidthLine()
     {
         return $this->width_line;
     }

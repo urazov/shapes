@@ -3,13 +3,14 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Editor\Core\App;
+use Editor\Responses\JsonResponse;
 
 try{
     $app = App::getInstance();
 
     $app->registerRequest(array_merge($_GET, $_POST));
 
-    $app->registerResponse();
+    $app->registerResponse(new JsonResponse());
 
     $app->validate();
 
