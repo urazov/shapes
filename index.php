@@ -16,7 +16,7 @@ try{
 
     $app->run();
 
-    return $app->getResult();
+    die($app->getResult());
 } catch (Exception $e) {
     $result = [
         'message' => $e->getMessage(),
